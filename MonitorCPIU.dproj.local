@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/07/06 11:09:17.000.493,=C:\Users\Rafaele\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/07/06 11:09:42.000.708,C:\Users\Rafaele\Documents\Embarcadero\Studio\Projects\MonitorCPU\Monitor.pas=C:\Users\Rafaele\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/07/06 11:09:42.000.708,C:\Users\Rafaele\Documents\Embarcadero\Studio\Projects\MonitorCPU\Monitor.dfm=C:\Users\Rafaele\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2017/07/06 11:09:45.000.874,C:\Users\Rafaele\Documents\Embarcadero\Studio\Projects\MonitorCPU\MonitorCPIU.dproj=C:\Users\Rafaele\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2017/07/06 11:15:07.000.885,=C:\Users\Rafaele\Documents\Embarcadero\Studio\Projects\MonitorCPU\Unit1.pas</Transaction>
+    <Transaction>2017/07/06 11:15:23.000.892,C:\Users\Rafaele\Documents\Embarcadero\Studio\Projects\MonitorCPU\uTotalCpuUsagePct.pas=C:\Users\Rafaele\Documents\Embarcadero\Studio\Projects\MonitorCPU\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>
