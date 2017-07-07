@@ -35,9 +35,6 @@ type
   public
     { Public declarations }
   end;
-
-
-
 var
   MonitorCPU: TMonitorCPU;
 implementation
@@ -196,39 +193,37 @@ MonitorCPU.Left := Screen.Width - MonitorCPU.Width;
 end;
 
 procedure TMonitorCPU.Timer1Timer(Sender: TObject);
+const
+  cBytesPorMb = 1024 * 1024;
+
 var
 TotalCPUusagePercentage: Double; // uso em %
 memory, M: TMemoryStatus; // memoria
 
 begin
-
-label1.Visible := True;
-label2.Visible := true;
-{label3.Visible := true;
-label4.Visible := true; }
-label5.Visible := true;
-
-
+  M.dwLength := SizeOf(M);
+  GlobalMemoryStatus(M);
+  label1.Visible := True;
+  label2.Visible := true;
+  label3.Visible := true;
+  label4.Visible := true;
+  label5.Visible := true;
 
 // uso da cpu em frequencia
-label1.Caption := (Format('Uso da CPU: %f MHz', [GetCPUSpeed]));
+  label1.Caption := (Format('Uso da CPU: %f MHz', [GetCPUSpeed]));
 
 //verificando uso da cpu em %
-TotalCPUusagePercentage := GetTotalCpuUsagePct();
-Label2.Caption := 'Uso da CPU: ' + IntToStr(Round(TotalCPUusagePercentage)) + '%';
-        {
-// uso da memoria
-memory.dwLength := SizeOf(memory);
-label3.Caption := 'Memória Total '  + IntToStr(memory.dwTotalPhys) + ' Bytes' ;
-label4.Caption := 'Uso da Memória: ' + IntToStr(memory.dwAvailPhys) + ' Bytes';
-        }
+    TotalCPUusagePercentage := GetTotalCpuUsagePct();
+    Label2.Caption := 'Uso da CPU: ' + IntToStr(Round(TotalCPUusagePercentage)) + '%';
+
+  label3.Caption := (Format('Total Fisica: %f MB', [M.dwTotalPhys / cBytesPorMb]));
+  label4.Caption:=  (Format('Memória Livre: %f MB', [M.dwAvailPhys / cBytesPorMb]));
 // medidor de uso da memoria em %
 
   M.dwLength:= SizeOf(M);
   GlobalMemoryStatus(M);
   Label5.Caption := Format('Uso da Memória RAM: %d%%', [M.dwMemoryLoad]);
-
- btnDadosGerais.Click;
+  btnDadosGerais.Click;
 
 end;
 

@@ -5,7 +5,7 @@ object MonitorCPU: TMonitorCPU
   BorderStyle = bsSingle
   Caption = 'Monitor de Uso'
   ClientHeight = 262
-  ClientWidth = 256
+  ClientWidth = 265
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -22,7 +22,7 @@ object MonitorCPU: TMonitorCPU
   object Label1: TLabel
     Left = 0
     Top = 0
-    Width = 256
+    Width = 265
     Height = 17
     Align = alTop
     Caption = 'Label1'
@@ -38,7 +38,7 @@ object MonitorCPU: TMonitorCPU
   object Label2: TLabel
     Left = 0
     Top = 17
-    Width = 256
+    Width = 265
     Height = 17
     Align = alTop
     Caption = 'Label2'
@@ -54,7 +54,7 @@ object MonitorCPU: TMonitorCPU
   object Label3: TLabel
     Left = 0
     Top = 51
-    Width = 256
+    Width = 265
     Height = 17
     Align = alTop
     Caption = 'Label3'
@@ -70,7 +70,7 @@ object MonitorCPU: TMonitorCPU
   object Label4: TLabel
     Left = 0
     Top = 68
-    Width = 256
+    Width = 265
     Height = 17
     Align = alTop
     Caption = 'Label4'
@@ -86,7 +86,7 @@ object MonitorCPU: TMonitorCPU
   object Label5: TLabel
     Left = 0
     Top = 34
-    Width = 256
+    Width = 265
     Height = 17
     Align = alTop
     Caption = 'Label5'
@@ -102,7 +102,7 @@ object MonitorCPU: TMonitorCPU
   object Label6: TLabel
     Left = 0
     Top = 228
-    Width = 256
+    Width = 265
     Height = 13
     Align = alBottom
     Caption = 'Escolha o tema...'
@@ -118,17 +118,18 @@ object MonitorCPU: TMonitorCPU
   object cbxVclStyles: TComboBox
     Left = 0
     Top = 241
-    Width = 256
+    Width = 265
     Height = 21
     Align = alBottom
     Style = csDropDownList
     TabOrder = 0
     OnChange = cbxVclStylesChange
+    ExplicitWidth = 256
   end
   object Memo1: TMemo
     Left = 0
     Top = 91
-    Width = 256
+    Width = 265
     Height = 137
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
@@ -139,6 +140,7 @@ object MonitorCPU: TMonitorCPU
     ParentFont = False
     ReadOnly = True
     TabOrder = 1
+    ExplicitWidth = 256
   end
   object btnDadosGerais: TButton
     Left = 40
@@ -151,8 +153,8 @@ object MonitorCPU: TMonitorCPU
     OnClick = btnDadosGeraisClick
   end
   object Button1: TButton
-    Left = 264
-    Top = 56
+    Left = 384
+    Top = 8
     Width = 75
     Height = 25
     Caption = 'Button1'
