@@ -4,31 +4,36 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,Registry,
   uTotalCpuUsagePct,// uses ref. cpu em %
   psAPI, Vcl.Samples.Gauges,  // memoria ram
    Vcl.Themes, Vcl.WinXCtrls; // alteracao de temas
 type
   TMonitorCPU = class(TForm)
-    Label1: TLabel;
-    Label2: TLabel;
     Timer1: TTimer;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
     cbxVclStyles: TComboBox;
     Label6: TLabel;
     Memo1: TMemo;
     btnDadosGerais: TButton;
-    Button1: TButton;
-    Gauge1: TGauge;
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label5: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    GroupBox2: TGroupBox;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnDadosGeraisClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure cbxVclStylesChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+
+
+
 
   private
     { Private declarations }
@@ -40,6 +45,8 @@ var
 implementation
 
 {$R *.dfm}
+
+
 
 //limpar memoria residual
 procedure TrimAppMemorySize;
@@ -144,16 +151,6 @@ begin
   end;
 end;
 
-procedure TMonitorCPU.Button1Click(Sender: TObject);
-var
-  Mem: TMemoryStatus;
-begin
-  Mem.dwLength := SizeOf(Mem);
-  GlobalMemoryStatus(Mem);
-  Gauge1.MaxValue := Mem.dwTotalPhys;
-  Gauge1.Progress := Mem.dwTotalPhys - Mem.dwAvailPhys;
-end;
-
 procedure TMonitorCPU.cbxVclStylesChange(Sender: TObject);
 begin
 TStyleManager.SetStyle(cbxVclStyles.Text);
@@ -195,11 +192,12 @@ end;
 procedure TMonitorCPU.Timer1Timer(Sender: TObject);
 const
   cBytesPorMb = 1024 * 1024;
+  // ref. a monitoramento da bateria
 
 var
 TotalCPUusagePercentage: Double; // uso em %
 memory, M: TMemoryStatus; // memoria
-
+EstadoDaFonte: _SYSTEM_POWER_STATUS;//verifica bateria
 begin
   M.dwLength := SizeOf(M);
   GlobalMemoryStatus(M);
@@ -208,6 +206,11 @@ begin
   label3.Visible := true;
   label4.Visible := true;
   label5.Visible := true;
+  label7.Visible := true;
+  label8.Visible := true;
+
+
+
 
 // uso da cpu em frequencia
   label1.Caption := (Format('Uso da CPU: %f MHz', [GetCPUSpeed]));
@@ -224,6 +227,21 @@ begin
   GlobalMemoryStatus(M);
   Label5.Caption := Format('Uso da Memória RAM: %d%%', [M.dwMemoryLoad]);
   btnDadosGerais.Click;
+
+
+  // verifica bateria do notebook
+
+   GetSystemPowerStatus(EstadoDaFonte);
+   if EstadoDaFonte.BatteryLifePercent <= 100 then
+  Label7.Caption := 'Nível: '+IntToStr(EstadoDaFonte.BatteryLifePercent)+'%'
+  else if EstadoDaFonte.BatteryLifePercent = HIGH(BYTE) then
+  Label7.Caption := 'Nível: Desconhecido';
+
+  if EstadoDaFonte.BatteryLifeTime < HIGH(DWORD) then
+  Label8.Caption := 'Tempo restante de uso: ' + IntToStr(EstadoDaFonte.BatteryLifeTime div 60) + ' minutos'
+  else
+  Label8.Caption := 'Tempo restante de uso: Carregando...';
+
 
 end;
 
